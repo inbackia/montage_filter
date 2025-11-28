@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Graduation Filter Mirror</title>
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="PhotoBooth">
+
+    <!-- 외부 CSS 연결 -->
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+</head>
+<body>
+<body>
+
+<!-- 카메라 + 오버레이 영역 -->
+<div id="camera-wrapper">
+    <video id="camera" autoplay playsinline muted></video>
+    <img id="overlay" src="filters/A_1.png" />
+</div>
+
+<!-- 오른쪽 슬라이드 패널 -->
+<div id="filter-list">
+    <!-- 상훈 -->
+    <div class="member-block">
+        <div class="member" data-member="sanghoon">
+            <img class="thumb main" src="thumbs/sanghoon/main.png">
+            <div class="member-name">Sang-hun</div>
+        </div>
+        <div id="poses-sanghoon" class="pose-group hidden">
+            <img class="thumb pose" data-filter="sanghoon/pose1.png" src="thumbs/sanghoon/pose1.png">
+            <img class="thumb pose" data-filter="sanghoon/pose2.png" src="thumbs/sanghoon/pose2.png">
+            <img class="thumb pose" data-filter="sanghoon/pose3.png" src="thumbs/sanghoon/pose3.png">
+        </div>
+    </div>
+
+    <!-- 인혁 -->
+    <div class="member-block">
+        <div class="member" data-member="inhyeok">
+            <img class="thumb main" src="thumbs/inhyeok/main.png">
+            <div class="member-name">Inhyeok</div>
+        </div>
+        <div id="poses-inhyeok" class="pose-group hidden">
+            <img class="thumb pose" data-filter="inhyeok/pose1.png" src="thumbs/inhyeok/pose1.png">
+            <img class="thumb pose" data-filter="inhyeok/pose2.png" src="thumbs/inhyeok/pose2.png">
+            <img class="thumb pose" data-filter="inhyeok/pose3.png" src="thumbs/inhyeok/pose3.png">
+        </div>
+    </div>
+
+    <!-- 예린 -->
+    <div class="member-block">
+        <div class="member" data-member="yerin">
+            <img class="thumb main" src="thumbs/yerin/main.png">
+            <div class="member-name">Yerin</div>
+        </div>
+        <div id="poses-yerin" class="pose-group hidden">
+            <img class="thumb pose" data-filter="yerin/pose1.png" src="thumbs/yerin/pose1.png">
+            <img class="thumb pose" data-filter="yerin/pose2.png" src="thumbs/yerin/pose2.png">
+            <img class="thumb pose" data-filter="yerin/pose3.png" src="thumbs/yerin/pose3.png">
+        </div>
+    </div>
+
+</div>
+
+<!-- 패널 토글 버튼 -->
+<div id="panel-toggle">⬅</div>
+
+<!-- 외부 JS 연결 -->
+<script src="app.js"></script>
+</body>
+</html>

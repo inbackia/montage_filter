@@ -1,0 +1,200 @@
+body {
+  margin: 0;
+  overflow: hidden;
+  background: black;
+  font-family: 'Poppins', sans-serif;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+
+/* 카메라 전체 화면 */
+#camera-wrapper {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background: #222; /* 웹캠 없을 때 표시되는 기본 배경 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.member {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.member .thumb.main {
+  margin-bottom: 2px;
+}
+
+.member-name {
+  font-size: 14px;
+  color: #ddd;
+  text-align: center;
+  margin-top: 1px;
+  pointer-events: none; /* 클릭 불가 (이미지 눌려야 하니까) */
+}
+
+.member .thumb.main.active + .member-name {
+  color: #00d6a3;
+  font-weight: 600;
+}
+
+/* 포즈 그룹은 메인 아래에 위치 */
+.member-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;   /* 중앙 정렬 */
+  width: 100%;
+}
+
+#camera {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scaleX(-1);
+  display: none; /* 웹캠 있을 때만 표시됨 */
+}
+
+/* 필터 오버레이 PNG */
+#overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: auto;
+    height: 100%;      /* 화면 세로에 맞추기 */
+    object-fit: contain;
+    pointer-events: none;
+    z-index: 10;
+}
+
+/* -------------------------
+   슬라이드 패널 (filter-list)
+-------------------------- */
+#filter-list {
+  position: absolute;
+  top: 0px; 
+   bottom: 20px;
+  right: 0;
+  width: 90px;
+ height: 120vh;
+  background: rgb(0,0,0);
+  backdrop-filter: blur(6px);
+  padding: 20px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  
+  /* 핵심: 오른쪽에서 숨어있는 상태 */
+    /* transform: translateX(100%);
+  transition: transform 0.35s ease-out; */
+
+  z-index: 20;
+  overflow-y: auto;
+}
+
+/* #panel-toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(4px);
+  border-radius: 50%;
+
+  color: white;
+  font-size: 22px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 3000;
+  cursor: pointer;
+  transition: 0.25s ease;
+} */
+
+#panel-toggle:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+
+#panel-toggle:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* 패널이 열려 있을 때 → 화살표 반대 */
+#filter-list.open + #panel-toggle {
+  content: "";
+}
+
+#filter-list.open ~ #panel-toggle {
+  transform: rotate(180deg);
+}
+
+#filter-list.open {
+  transform: translateX(0%);
+}
+
+
+/* 썸네일 기본 스타일 (원형 버튼) */
+.thumb {
+     margin: 4px; 
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #333;
+
+  /* border 두께를 항상 일정하게 */
+  border: 3px solid #ffffff30;
+
+  /* 움직임 없도록 box-sizing 유지 */
+  box-sizing: border-box;
+
+  /* 기본 효과 */
+  filter: grayscale(100%);
+  opacity: 0.6;
+  transition: filter 0.2s ease, opacity 0.2s ease, box-shadow 0.2s ease;
+}
+
+
+
+/* 활성화된 썸네일 */
+.thumb.active {
+  filter: none;
+  opacity: 1;
+
+  /* border는 그대로 유지 */
+ box-shadow:
+    0 0 0 3px #00d6a3,  /* outline처럼 보이게 */
+    0 0 8px #00d6a3;
+  border-color: #ffffff30;
+}
+
+.pose-group.hidden {
+  display: none;
+}
+
+.hidden { display: none; }
+
+/* pose-group 구조 */
+.pose-group {
+  margin: 10px 0 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* pose-group 안의 썸네일 (조금 작게) */
+.pose-group .thumb {
+  width: 65px;
+  height: 65px;
+}
